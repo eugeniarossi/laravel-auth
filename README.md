@@ -1,10 +1,6 @@
 # Laravel Boolfolio - Base
 
-Creiamo con Laravel il nostro sistema di gestione del nostro Portfolio di progetti.
-Oggi iniziamo un nuovo progetto che si arricchirà nel corso delle prossime lezioni: man mano aggiungeremo funzionalità e vedremo la nostra applicazione crescere ed evolvere.
-Nel pomeriggio, rifate ciò che abbiamo visto insieme stamattina stilando tutto a vostro piacere utilizzando SASS.
-Descrizione:
-Ripercorriamo gli steps fatti a lezione ed iniziamo un nuovo progetto usando laravel breeze ed il pacchetto Laravel 9 Preset con autenticazione.
+Sistema di gestione di un Portfolio di progetti.
 
 Iniziamo con il definire il layout, modello, migrazione, controller e rotte necessarie per il sistema portfolio:
 
