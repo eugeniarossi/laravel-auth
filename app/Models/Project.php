@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     use HasFactory;
+
+    //protected $fillable = ['title', 'content']; // aggiornerà title e content
+
+    protected $guarded = ['slug']; // aggiornerà tutto tranne lo slug
 }

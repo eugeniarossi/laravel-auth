@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
@@ -28,7 +29,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.projects.create');
     }
 
     /**
@@ -39,7 +40,17 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $data = $request->validated(); // prende i dati validati
+        $project = new Project(); // prende il model di project
+        $project->fill($data); // filla il model con i dati validati
+
+        // generare slug
+        $project->slug = Str::slug($project->title, '-');
+        $project->save(); // devo salvare lo slug perchè è guarded
+
+        return redirect()->route('admin.projects.index')->with('message', 'Project created successfully');
+        // usiamo redirect invece che restituire una view, perchè stiamo facendo un post verso una pagina
+        // salva qualcosa ma non restituisvce nulla
     }
 
     /**
