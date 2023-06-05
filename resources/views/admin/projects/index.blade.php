@@ -10,19 +10,7 @@
     </div>
 
     {{-- message - project created --}}
-    @if (session('message'))
-      <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="toast-header">
-            <strong class="me-auto">Notification</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-          </div>
-          <div class="toast-body">
-            {{ session('message') }}
-          </div>
-        </div>
-      </div>
-    @endif
+    @include('partials.message')
     {{-- /message - project created --}}
 
     {{-- table --}}
@@ -48,19 +36,19 @@
             <td>{{ $project->slug }}</td>
             {{-- actions --}}
             <td>
-                <ul class="list-unstyled">
+                <ul class="list-unstyled d-flex">
                     {{-- show --}}
                     <li>
-                        <a href="{{ route('admin.projects.show', $project) }}" class="btn btn-sm btn-primary my-1">Show</a>
+                        <a href="{{ route('admin.projects.show', $project) }}" class="btn btn-sm btn-primary mx-1">Show</a>
                     </li>
                     {{-- edit --}}
                     <li>
-                        <a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-sm btn-warning my-1">Edit</a>
+                        <a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-sm btn-warning mx-1">Edit</a>
                     </li>
                     {{-- delete --}}
                     <li>
                         {{-- button trigger delete modal --}}
-                        <a href="#" class="btn btn-sm btn-danger my-1" data-bs-toggle="modal" data-bs-target="#project-{{ $project->id }}">Delete</a>
+                        <a href="#" class="btn btn-sm btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#project-{{ $project->id }}">Delete</a>
                     </li>
                 </ul>
             </td>
