@@ -48,7 +48,7 @@ class ProjectController extends Controller
         $project->slug = Str::slug($project->title, '-');
         $project->save(); // devo salvare lo slug perchè è guarded
 
-        return redirect()->route('admin.projects.index')->with('message', 'Project created successfully');
+        return redirect()->route('admin.projects.index')->with('message', "Project created successfully");
         // usiamo redirect invece che restituire una view, perchè stiamo facendo un post verso una pagina
         // salva qualcosa ma non restituisvce nulla
     }
@@ -80,7 +80,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -92,7 +92,15 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $data = $request->validated(); // prende i dati validati
+
+        $project->update($data); // aggiorna i dati
+
+        // generare slug
+        $project->slug = Str::slug($project->title, '-');
+        $project->save(); // devo salvare lo slug perchè è guarded
+
+        return redirect()->route('admin.projects.index')->with('message', "Project $project->title updated successfully");
     }
 
     /**

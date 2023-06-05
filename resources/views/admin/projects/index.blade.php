@@ -49,12 +49,15 @@
             {{-- actions --}}
             <td>
                 <ul class="list-unstyled">
+                    {{-- show --}}
                     <li>
-                        <a href="{{ route('admin.projects.show', $project->slug) }}" class="btn btn-sm btn-primary my-1">Show</a>
+                        <a href="{{ route('admin.projects.show', $project) }}" class="btn btn-sm btn-primary my-1">Show</a>
                     </li>
+                    {{-- edit --}}
                     <li>
-                        <a href="" class="btn btn-sm btn-warning my-1">Edit</a>
+                        <a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-sm btn-warning my-1">Edit</a>
                     </li>
+                    {{-- delete --}}
                     <li>
                         <a href="" class="btn btn-sm btn-danger my-1">Delete</a>
                     </li>
