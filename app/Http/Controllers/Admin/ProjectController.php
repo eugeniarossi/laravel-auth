@@ -111,6 +111,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $old_title = $project->title; // salvo il titolo per poterlo richiamare nel message
+        $project->delete();
+
+        return redirect()->route('admin.projects.index')->with('message', "Project $old_title deleted successfully");
     }
 }

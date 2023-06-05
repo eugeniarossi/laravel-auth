@@ -59,12 +59,37 @@
                     </li>
                     {{-- delete --}}
                     <li>
-                        <a href="" class="btn btn-sm btn-danger my-1">Delete</a>
+                        {{-- button trigger delete modal --}}
+                        <a href="#" class="btn btn-sm btn-danger my-1" data-bs-toggle="modal" data-bs-target="#project-{{ $project->id }}">Delete</a>
                     </li>
                 </ul>
             </td>
             {{-- /actions --}}
             </tr>
+
+            {{-- modal --}}
+            <div class="modal fade" id="project-{{ $project->id }}" tabindex="-1" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Warning</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you want to delete project <strong>{{ $project->title }}</strong>?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form action="{{ route('admin.projects.destroy', $project) }}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <button class="btn btn-danger my-1">Delete</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{-- /modal --}}
             @endforeach
             {{-- element to repeat --}}
         </tbody>
