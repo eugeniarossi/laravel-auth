@@ -11,5 +11,5 @@ class Project extends Model
 
     //protected $fillable = ['title', 'content']; // aggiornerà title e content
 
-    protected $guarded = ['slug']; // aggiornerà tutto tranne lo slug
+    protected $guarded = ['slug', 'image']; // aggiornerà tutto tranne lo slug e l'immagine
 }

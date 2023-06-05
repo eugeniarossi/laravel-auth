@@ -10,7 +10,7 @@
     {{-- /validation errors --}}
 
     {{-- form --}}
-    <form action="{{ route('admin.projects.store') }}" method="POST">
+    <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         {{-- title input --}}
         <div class="mb-3">
@@ -18,6 +18,12 @@
           <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}">
         </div>
         {{-- /title input --}}
+        {{-- image input --}}
+        <div class="mb-3">
+          <label for="image" class="form-label">Image</label>
+          <input type="file" class="form-control" id="image" name="image">
+        </div>
+        {{-- /image input --}}
         {{-- content input --}}
         <div class="mb-3">
           <label for="content" class="form-label">Content</label>

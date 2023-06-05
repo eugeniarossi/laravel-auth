@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProjectController extends Controller
@@ -42,6 +43,12 @@ class ProjectController extends Controller
     {
         $data = $request->validated(); // prende i dati validati
         $project = new Project(); // prende il model di project
+
+        if(isset($data['image'])){ 
+            $path_img = Storage::put('uploads', $data['image']);
+            $project->image = $path_img;
+        }
+
         $project->fill($data); // filla il model con i dati validati
 
         // generare slug
@@ -98,6 +105,21 @@ class ProjectController extends Controller
 
         // generare slug
         $project->slug = Str::slug($project->title, '-');
+
+        //gestisco l'immagine
+        if (isset($data['image'])) {
+            if ($project->image) {
+                Storage::delete($project->image);
+            }
+
+            $project->image = Storage::put('uploads', $data['image']);
+        } else if (empty($data['image'])) {
+            if ($project->image) {
+                Storage::delete($project->image);
+                $project->image = null;
+            }
+        }
+
         $project->save(); // devo salvare lo slug perchè è guarded
 
         return redirect()->route('admin.projects.index')->with('message', "Project $project->title updated successfully");
